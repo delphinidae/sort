@@ -45,17 +45,17 @@ def sort_file(file_counter, line_list, files_list, file_name_in):
     #print("We ave written new file: {0}".format(new_file_name))
 
 
-def split_files(file_name_in, files_list, max_size=80 * 1000 * 1000, delta=0.5 * 1000):
+def split_files(file_name_in, files_list, max_size=80 * 1000 * 1000):
     processed_size = 0
     file_counter = 0
     line_list = []
     with open(file_name_in, 'r') as f_in:
         for input_line in f_in:
-            if len(input_line) >= max_size:
+            if len(input_line) >= max_size / 4:
                 raise Exception("Line is too long!")
             processed_size += len(input_line)
             line_list.append(input_line)
-            if abs(processed_size - max_size) < delta:
+            if processed_size >= max_size:
                 file_counter += 1
                 sort_file(file_counter, line_list, files_list, file_name_in)
                 line_list = []
