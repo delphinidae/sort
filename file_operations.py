@@ -1,4 +1,7 @@
-def merge_files(file_name1, file_name2, file_name_out):
+import os
+
+
+def merge_files(file_name1, file_name2, file_name_out="temp_file_out"):
     with open(file_name1, 'r') as f1:
         with open(file_name2, 'r') as f2:
             with open(file_name_out, 'w') as f_out:
@@ -32,7 +35,11 @@ def merge_files(file_name1, file_name2, file_name_out):
                     else:
                         f_out.write(l2)
                         l2 = f2.readline()
-    return True
+
+    os.remove(file_name1)
+    os.remove(file_name2)
+    os.rename(file_name_out, file_name2)
+    return file_name2
 
 
 def sort_file(file_counter, line_list, files_list, file_name_in):

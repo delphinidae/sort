@@ -2,6 +2,7 @@
 import os
 import file_operations
 import argparse
+import functools
 
 
 file_counter = 0
@@ -21,15 +22,7 @@ print ("We have {0} sorted files".format(file_counter))
 #file_one = file_name_in + '_sorted_{0}'.format(1)
 file_one = files_list[0]
 tmp_name_out = files_list[-1]
-for i in range(1, file_counter):
-    file_two = files_list[i]
-    tmp_name_out = 'sorted-{0}-{1}'.format(i, i + 1)
-    #print ("File 1: {0}, file 2: {1}, out: {2}".format(file_one, file_two, tmp_name_out))
-    if file_operations.merge_files(file_one, file_two, tmp_name_out):
-        os.remove(file_one)
-        os.remove(file_two)
-        file_one = tmp_name_out
-    else:
-        raise Exception('Failed to merge files')
+
+tmp_name_out = functools.reduce(lambda a, x: file_operations.merge_files(a, x), files_list)
 
 os.rename(tmp_name_out, args.output)
