@@ -39,6 +39,7 @@ def merge_files(file_name1, file_name2, file_name_out="temp_file_out"):
     os.remove(file_name1)
     os.remove(file_name2)
     os.rename(file_name_out, file_name2)
+    #print ("file 1: {0}, file 2: {1}, file out: {1}".format(file_name1, file_name2))
     return file_name2
 
 
@@ -52,7 +53,7 @@ def sort_file(file_counter, line_list, files_list, file_name_in):
     #print("We ave written new file: {0}".format(new_file_name))
 
 
-def split_files(file_name_in, files_list, max_size=80 * 1000 * 1000):
+def split_files(file_name_in, files_list, max_size=40 * 1000 * 1000):
     processed_size = 0
     file_counter = 0
     line_list = []
