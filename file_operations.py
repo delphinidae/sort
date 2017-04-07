@@ -14,33 +14,33 @@ def merge_files(file_name1, file_name2, file_name_out="temp_file_out"):
                         #the first file has come to the end
                         if l2 != '':
                             f_out.write(l2)
-                            print ("LINE")
+                            #print ("LINE")
                         for rest_l2 in f2:
                             f_out.write(rest_l2)
                         break
                     if l2 == '':
                         if l1 != '':
                             f_out.write(l1)
-                            print ("LINE")
+                            #print ("LINE")
                         #the second file has come to the end
                         for rest_l1 in f1:
                             f_out.write(rest_l1)
-                            print ("LINE")
+                            #print ("LINE")
                         break
                     if l1 < l2:
                         f_out.write(l1)
-                        print ("LINE")
+                        #print ("LINE")
                         l1 = f1.readline()
                     elif l1 == l2:
                         f_out.write(l1)
-                        print ("LINE")
+                        #print ("LINE")
                         f_out.write(l2)
-                        print ("LINE")
+                        #print ("LINE")
                         l1 = f1.readline()
                         l2 = f2.readline()
                     else:
                         f_out.write(l2)
-                        print ("LINE")
+                        #print ("LINE")
                         l2 = f2.readline()
 
     os.remove(file_name1)
