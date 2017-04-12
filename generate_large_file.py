@@ -1,7 +1,12 @@
 #!/usr/bin/python3
 import argparse
-import random_crap
 import random
+
+def random_text(length):
+    rs = ""
+    for i in range(0, length):
+        rs = rs + random.choice('abcdef0123456789')
+    return rs
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-i', dest='input', default='input', help='input file path')
@@ -15,13 +20,8 @@ f = open(file_name_in, "w")
 
 #generate the content
 for line in range(n):
-    f.write(random_crap.random_text(l))
+    f.write(random_text(l))
     f.write("\n")
 print ("File size: {0}".format(l*n))
-"""
-for x in range(9400000):
-    f.write(str(random.randint(1000000, 2000000)))
-    f.write("\n")
-"""
 f.close()
 
